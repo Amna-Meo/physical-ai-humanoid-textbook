@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "name": "physical-ai-textbook",
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    },
+    {
+      "src": "backend/src/api/main.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.11"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/src/api/main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/build/index.html"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "$DATABASE_URL",
+    "OPENAI_API_KEY": "$OPENAI_API_KEY",
+    "QDRANT_URL": "$QDRANT_URL",
+    "QDRANT_API_KEY": "$QDRANT_API_KEY"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "survey_date": "2025-12-18T09:52:31.917542",
+  "platform_version": "1.0.0",
+  "user_feedback": [
+    {
+      "category": "usability",
+      "question": "How would you rate the overall usability of the platform?",
+      "options": [
+        "Excellent",
+        "Good",
+        "Average",
+        "Poor",
+        "Very Poor"
+      ]
+    },
+    {
+      "category": "content_quality",
+      "question": "How would you rate the quality of the textbook content?",
+      "options": [
+        "Excellent",
+        "Good",
+        "Average",
+        "Poor",
+        "Very Poor"
+      ]
+    },
+    {
+      "category": "ai_interaction",
+      "question": "How helpful do you find the AI tutor interactions?",
+      "options": [
+        "Very Helpful",
+        "Helpful",
+        "Neutral",
+        "Not Very Helpful",
+        "Not Helpful"
+      ]
+    },
+    {
+      "category": "learning_progression",
+      "question": "Do you feel the learning progression is well-structured?",
+      "options": [
+        "Strongly Agree",
+        "Agree",
+        "Neutral",
+        "Disagree",
+        "Strongly Disagree"
+      ]
+    },
+    {
+      "category": "accessibility",
+      "question": "How accessible do you find the platform?",
+      "options": [
+        "Very Accessible",
+        "Accessible",
+        "Neutral",
+        "Not Very Accessible",
+        "Not Accessible"
+      ]
+    }
+  ],
+  "open_feedback": [
+    {
+      "category": "improvements",
+      "prompt": "What improvements would you suggest for the platform?"
+    },
+    {
+      "category": "features",
+      "prompt": "What additional features would you like to see?"
+    },
+    {
+      "category": "issues",
+      "prompt": "Did you encounter any issues during your usage?"
+    }
+  ],
+  "demographics": [
+    {
+      "field": "primary_role",
+      "options": [
+        "Student",
+        "Instructor",
+        "Professional",
+        "Researcher",
+        "Other"
+      ]
+    },
+    {
+      "field": "technical_background",
+      "options": [
+        "Beginner",
+        "Intermediate",
+        "Advanced",
+        "Expert"
+      ]
+    },
+    {
+      "field": "primary_use_case",
+      "options": [
+        "Self-study",
+        "Coursework",
+        "Professional Development",
+        "Research"
+      ]
+    }
+  ]
+}
