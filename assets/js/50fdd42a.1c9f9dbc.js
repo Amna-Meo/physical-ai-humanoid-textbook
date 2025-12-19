@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunktextbook_frontend=globalThis.webpackChunktextbook_frontend||[]).push([[321],{8720(o){o.exports=JSON.parse('{"allTagsPath":"/physical-ai-humanoid-textbook/blog/tags","slug":"/physical-ai-humanoid-textbook/blog/tags/facebook","name":"facebook","count":1,"permalink":"/physical-ai-humanoid-textbook/blog/tags/facebook"}')}}]);

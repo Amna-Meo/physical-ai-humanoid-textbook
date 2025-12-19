@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunktextbook_frontend=globalThis.webpackChunktextbook_frontend||[]).push([[193],{2373(o){o.exports=JSON.parse('{"permalink":"/physical-ai-humanoid-textbook/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"previousPage":null,"nextPage":null,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
