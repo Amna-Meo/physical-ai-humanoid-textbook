@@ -1,18 +1,17 @@
 {
-  "name": "docs",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "docusaurus start", "test": "echo \\"Error: no test specified\\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@docusaurus/core": "^3.9.2",
-    "@docusaurus/preset-classic": "^3.9.2",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3"
-  }
+    "name": "physical-ai-book",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "start": "docusaurus start",
+        "build": "docusaurus build",
+        "deploy": "docusaurus deploy",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "@docusaurus/core": "^3.0.0",
+        "@docusaurus/preset-classic": "^3.0.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0"
+    }
 }

@@ -1,3 +1,8 @@
+---
+id: chapter-1-introduction-to-physical-ai
+title: Introduction to Physical AI
+sidebar_label: Introduction
+---
 # Chapter 1: Introduction to Physical AI
 
 ## Learning Objectives

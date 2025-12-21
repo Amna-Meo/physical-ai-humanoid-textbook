@@ -1,3 +1,9 @@
+---
+id: chapter-7-control-systems
+title: Control Systems for Physical AI
+sidebar_label: Control Systems
+---
+
 # Chapter 7: Control Systems for Physical AI
 
 ## Learning Objectives

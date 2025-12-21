@@ -1,3 +1,9 @@
+---
+id: chapter-10-integration-and-deployment
+title: Integration and Deployment of Physical AI Systems
+sidebar_label: Integration and Deployment
+---
+
 # Chapter 10: Integration and Deployment of Physical AI Systems
 
 ## Learning Objectives

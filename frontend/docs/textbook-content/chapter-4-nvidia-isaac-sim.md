@@ -1,3 +1,9 @@
+---
+id: chapter-4-nvidia-isaac-sim
+title: NVIDIA Isaac Sim for Advanced Physical AI Simulation
+sidebar_label: Introduction
+---
+
 # Chapter 4: NVIDIA Isaac Sim for Advanced Physical AI Simulation
 
 ## Learning Objectives

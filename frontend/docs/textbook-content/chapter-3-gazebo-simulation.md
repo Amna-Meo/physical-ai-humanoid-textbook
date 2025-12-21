@@ -1,3 +1,9 @@
+---
+id: chapter-3-gazebo-simulation
+title: Gazebo Simulation for Physical AI
+sidebar_label: Gazebo Simulation
+---
+
 # Chapter 3: Gazebo Simulation for Physical AI
 
 ## Learning Objectives

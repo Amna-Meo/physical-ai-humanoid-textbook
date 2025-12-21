@@ -1,3 +1,9 @@
+---
+id: chapter-5-vision-language-action-systems
+title: Vision-Language-Action Systems for Physical AI
+sidebar_label: Vision-Language-Action Systems
+---
+
 # Chapter 5: Vision-Language-Action Systems for Physical AI
 
 ## Learning Objectives

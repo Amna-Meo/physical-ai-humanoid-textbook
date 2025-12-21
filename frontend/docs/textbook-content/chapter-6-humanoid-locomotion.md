@@ -1,3 +1,8 @@
+---
+id: chapter-6-humanoid-locomotion
+title: Humanoid Locomotion
+sidebar_label: Humanoid Locomotion
+---
 # Chapter 6: Humanoid Locomotion
 
 ## Learning Objectives

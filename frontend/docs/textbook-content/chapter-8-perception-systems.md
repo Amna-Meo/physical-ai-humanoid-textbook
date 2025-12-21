@@ -1,3 +1,9 @@
+---
+id: chapter-8-perception-systems
+title: Perception Systems for Physical AI
+sidebar_label: Perception Systems
+---
+
 # Chapter 8: Perception Systems for Physical AI
 
 ## Learning Objectives

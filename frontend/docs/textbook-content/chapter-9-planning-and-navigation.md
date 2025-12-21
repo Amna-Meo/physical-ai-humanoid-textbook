@@ -1,3 +1,9 @@
+---
+id: chapter-9-planning-and-navigation
+title: Planning and Navigation for Physical AI
+sidebar_label: Planning and Navigation
+---
+
 # Chapter 9: Planning and Navigation for Physical AI
 
 ## Learning Objectives

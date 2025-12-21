@@ -1,3 +1,8 @@
+---
+id: chapter-2-ros2-for-humanoid-robotics
+title: ROS 2 for Humanoid Robotics
+sidebar_label: ROS 2 for Humanoid Robotics
+---
 # Chapter 2: ROS 2 for Humanoid Robotics
 
 ## Learning Objectives

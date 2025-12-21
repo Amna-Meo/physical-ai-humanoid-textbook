@@ -1,3 +1,9 @@
+---
+id: user-documentation-instruction-for-user
+title: Instruction for User
+sidebar_label: Instruction for User
+---
+
 # Physical AI & Humanoid Robotics Textbook - User Documentation
 
 ## Table of Contents

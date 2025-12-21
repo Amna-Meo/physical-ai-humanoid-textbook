@@ -1,3 +1,9 @@
+---
+id: content-validation-report
+title: Content Validation Report
+sidebar_label: Content Validation Report
+---
+
 # Content Validation Report
 ## Physical AI & Humanoid Robotics Textbook
 
