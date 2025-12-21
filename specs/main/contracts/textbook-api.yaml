@@ -1,0 +1,374 @@
+openapi: 3.0.0
+info:
+  title: Physical AI & Humanoid Robotics Textbook API
+  description: API for the AI-native textbook platform
+  version: 1.0.0
+servers:
+  - url: https://api.textbook.example.com/v1
+    description: Production server
+  - url: https://staging-api.textbook.example.com/v1
+    description: Staging server
+
+paths:
+  /chapters:
+    get:
+      summary: Get all textbook chapters
+      description: Retrieve a list of all available textbook chapters
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of chapters to return
+          required: false
+          schema:
+            type: integer
+            default: 20
+        - name: offset
+          in: query
+          description: Number of chapters to skip
+          required: false
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of chapters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chapters:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Chapter'
+                  total:
+                    type: integer
+        '400':
+          description: Invalid parameters
+    post:
+      summary: Create a new chapter
+      description: Create a new textbook chapter (for authors)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Chapter'
+      responses:
+        '201':
+          description: Chapter created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+        '400':
+          description: Invalid chapter data
+
+  /chapters/{chapterId}:
+    get:
+      summary: Get a specific chapter
+      description: Retrieve a specific textbook chapter by ID
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          description: ID of the chapter to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Chapter details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+        '404':
+          description: Chapter not found
+
+  /users/profile:
+    get:
+      summary: Get user profile
+      description: Retrieve the current user's profile information
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+    put:
+      summary: Update user profile
+      description: Update the current user's profile information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfile'
+      responses:
+        '200':
+          description: User profile updated
+        '400':
+          description: Invalid profile data
+
+  /ai/chat:
+    post:
+      summary: Chat with the textbook AI
+      description: Send a question to the AI and get a response grounded in textbook content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                  description: The question to ask the AI
+                context:
+                  type: string
+                  description: Optional context for the question
+      responses:
+        '200':
+          description: AI response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIResponse'
+        '400':
+          description: Invalid question format
+
+  /learning-paths:
+    get:
+      summary: Get available learning paths
+      description: Retrieve a list of available personalized learning paths
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          description: Optional user ID to get personalized paths
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of learning paths
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LearningPath'
+
+  /progress:
+    get:
+      summary: Get user progress
+      description: Retrieve the current user's progress in the textbook
+      responses:
+        '200':
+          description: User progress information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProgress'
+
+components:
+  schemas:
+    Chapter:
+      type: object
+      required:
+        - id
+        - title
+        - content
+        - word_count
+        - learning_objectives
+        - sources
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+        title:
+          type: string
+          description: Chapter title
+        content:
+          type: string
+          description: The chapter content (3,000-6,000 words)
+        word_count:
+          type: integer
+          description: Number of words in the chapter
+          minimum: 3000
+          maximum: 6000
+        learning_objectives:
+          type: array
+          items:
+            type: string
+          description: List of measurable learning objectives
+        prerequisites:
+          type: array
+          items:
+            type: string
+          description: List of required knowledge/skills
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Citation'
+          minItems: 15
+          maxItems: 25
+          description: List of authoritative sources (15-25 required)
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        created_date:
+          type: string
+          format: date-time
+          description: Date of creation
+        last_updated:
+          type: string
+          format: date-time
+          description: Date of last update
+        version:
+          type: string
+          description: Version number following semantic versioning
+
+    Citation:
+      type: object
+      required:
+        - id
+        - source_type
+        - citation_text
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the citation
+        source_type:
+          type: string
+          enum: [academic_paper, documentation, whitepaper, blog_post]
+          description: Type of source
+        citation_text:
+          type: string
+          description: Full citation in APA (7th Edition) format
+        reference_location:
+          type: string
+          description: Where in the chapter the citation appears
+        verification_status:
+          type: string
+          enum: [verified, pending, unverified]
+          description: Whether the citation has been verified
+
+    UserProfile:
+      type: object
+      required:
+        - id
+        - role
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the user
+        role:
+          type: string
+          enum: [student, instructor, professional]
+          description: User role
+        technical_background:
+          type: string
+          description: User's technical background and experience level
+        python_skills:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: Level of Python programming proficiency
+        ai_fundamentals:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: Level of AI concepts understanding
+        progress_tracking:
+          type: object
+          description: Records of completed chapters and assessments
+        personalization_preferences:
+          type: object
+          description: Preferences for content delivery
+
+    AIResponse:
+      type: object
+      required:
+        - answer
+        - sources
+        - confidence
+      properties:
+        answer:
+          type: string
+          description: The AI-generated response
+        sources:
+          type: array
+          items:
+            type: string
+          description: Chapters/references used in the response
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Confidence level of the response
+        explanation:
+          type: string
+          description: Explanation of how the answer was derived
+
+    LearningPath:
+      type: object
+      required:
+        - id
+        - name
+        - chapters
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the learning path
+        name:
+          type: string
+          description: Name of the learning path
+        user_id:
+          type: string
+          description: Reference to the user
+        chapters:
+          type: array
+          items:
+            type: string
+          description: Ordered list of chapter IDs in the path
+        objectives:
+          type: array
+          items:
+            type: string
+          description: Learning objectives for the path
+        progress:
+          type: object
+          description: User's progress through the path
+
+    Metadata:
+      type: object
+      properties:
+        concept_tags:
+          type: array
+          items:
+            type: string
+          description: Standardized terminology for key concepts
+        learning_graph_structure:
+          type: object
+          description: Relationships between concepts and chapters
+        version_tracking:
+          type: object
+          description: Specification and content version alignment
+
+    UserProgress:
+      type: object
+      properties:
+        completed_chapters:
+          type: array
+          items:
+            type: string
+          description: IDs of completed chapters
+        current_chapter:
+          type: string
+          description: ID of the currently active chapter
+        learning_path:
+          type: string
+          description: Current learning path ID
+        completion_percentage:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: Overall completion percentage

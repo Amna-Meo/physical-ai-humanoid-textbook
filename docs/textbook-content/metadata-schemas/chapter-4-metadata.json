@@ -1,0 +1,97 @@
+{
+  "chapter_id": "chapter-4",
+  "title": "NVIDIA Isaac Sim for Advanced Physical AI Simulation",
+  "slug": "nvidia-isaac-sim",
+  "version": "1.0",
+  "abstract": "This chapter covers NVIDIA Isaac Sim for high-fidelity simulation of Physical AI systems, including USD-based scene description, reinforcement learning environments, and digital twin applications.",
+  "learning_objectives": [
+    "Understand the architecture and core concepts of NVIDIA Isaac Sim",
+    "Create and configure robot models using USD format",
+    "Implement high-fidelity sensor simulation with realistic models",
+    "Set up reinforcement learning environments in Isaac Sim",
+    "Integrate Isaac Sim with ROS 2 for complete robot simulation",
+    "Apply domain randomization techniques for robust AI training",
+    "Optimize simulation performance for complex scenarios",
+    "Create digital twins for real-world robot validation"
+  ],
+  "keywords": [
+    "NVIDIA Isaac Sim",
+    "USD",
+    "Simulation",
+    "Reinforcement Learning",
+    "Digital Twin",
+    "High-Fidelity Graphics"
+  ],
+  "topics": [
+    "Advanced Simulation",
+    "USD Scene Description",
+    "Reinforcement Learning Environments",
+    "Digital Twin Technology"
+  ],
+  "prerequisites": [
+    "Experience with simulation environments",
+    "Understanding of USD format",
+    "Knowledge of reinforcement learning concepts"
+  ],
+  "estimated_reading_time": 70,
+  "word_count": 5210,
+  "difficulty_level": "advanced",
+  "target_audience": [
+    "Simulation engineers",
+    "AI researchers",
+    "Robotics practitioners"
+  ],
+  "related_chapters": [
+    "chapter-3",
+    "chapter-5",
+    "chapter-10"
+  ],
+  "standards_compliance": [
+    "NVIDIA Omniverse standards",
+    "USD specifications"
+  ],
+  "citation_style": "APA 7th Edition",
+  "review_status": "completed",
+  "last_reviewed": "2025-12-18",
+  "next_review_due": "2026-06-18",
+  "content_tags": [
+    {
+      "tag": "nvidia-isaac-sim",
+      "confidence": 0.99,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "usd",
+      "confidence": 0.96,
+      "relevance": "technical_aspect"
+    },
+    {
+      "tag": "reinforcement-learning",
+      "confidence": 0.94,
+      "relevance": "application"
+    },
+    {
+      "tag": "digital-twin",
+      "confidence": 0.92,
+      "relevance": "application"
+    },
+    {
+      "tag": "high-fidelity",
+      "confidence": 0.9,
+      "relevance": "characteristic"
+    }
+  ],
+  "ai_processing_metadata": {
+    "summary_length": 220,
+    "key_concepts_count": 25,
+    "technical_terms_count": 45,
+    "concept_graph_density": 0.78
+  },
+  "accessibility_features": [
+    "structured headings",
+    "visual examples",
+    "clear language",
+    "consistent navigation"
+  ],
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International"
+}

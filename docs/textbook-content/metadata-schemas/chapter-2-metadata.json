@@ -1,0 +1,95 @@
+{
+  "chapter_id": "chapter-2",
+  "title": "ROS 2 for Humanoid Robotics",
+  "slug": "ros2-for-humanoid-robotics",
+  "version": "1.0",
+  "abstract": "This chapter covers the Robot Operating System 2 (ROS 2) framework and its application to humanoid robotics, including architecture, communication patterns, and safety considerations.",
+  "learning_objectives": [
+    "Understand the architecture and core concepts of ROS 2",
+    "Create and manage ROS 2 packages and workspaces",
+    "Implement communication patterns using topics, services, and actions",
+    "Integrate navigation and manipulation capabilities in humanoid robots",
+    "Connect ROS 2 with simulation environments like Gazebo",
+    "Apply safety considerations for humanoid robotics applications"
+  ],
+  "keywords": [
+    "ROS 2",
+    "Robot Operating System",
+    "Humanoid Robotics",
+    "Middleware",
+    "Communication Patterns",
+    "Safety"
+  ],
+  "topics": [
+    "Robot Operating System",
+    "Middleware Architecture",
+    "Robot Communication",
+    "Safety-Critical Systems"
+  ],
+  "prerequisites": [
+    "Basic programming skills",
+    "Understanding of robotics fundamentals",
+    "Linux command line experience"
+  ],
+  "estimated_reading_time": 60,
+  "word_count": 4231,
+  "difficulty_level": "intermediate",
+  "target_audience": [
+    "Robotics engineers",
+    "Graduate students",
+    "Practitioners in humanoid robotics"
+  ],
+  "related_chapters": [
+    "chapter-1",
+    "chapter-3",
+    "chapter-9"
+  ],
+  "standards_compliance": [
+    "ROS 2 security standards",
+    "Real-time systems standards"
+  ],
+  "citation_style": "APA 7th Edition",
+  "review_status": "completed",
+  "last_reviewed": "2025-12-18",
+  "next_review_due": "2026-06-18",
+  "content_tags": [
+    {
+      "tag": "ros2",
+      "confidence": 0.98,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "middleware",
+      "confidence": 0.94,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "communication-patterns",
+      "confidence": 0.92,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "humanoid-robotics",
+      "confidence": 0.9,
+      "relevance": "application"
+    },
+    {
+      "tag": "real-time-systems",
+      "confidence": 0.88,
+      "relevance": "technical_aspect"
+    }
+  ],
+  "ai_processing_metadata": {
+    "summary_length": 180,
+    "key_concepts_count": 18,
+    "technical_terms_count": 31,
+    "concept_graph_density": 0.72
+  },
+  "accessibility_features": [
+    "structured headings",
+    "code examples with syntax highlighting",
+    "clear language",
+    "consistent navigation"
+  ],
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International"
+}

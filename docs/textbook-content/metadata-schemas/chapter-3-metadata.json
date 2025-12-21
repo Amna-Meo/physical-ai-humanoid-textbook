@@ -1,0 +1,96 @@
+{
+  "chapter_id": "chapter-3",
+  "title": "Gazebo Simulation for Physical AI",
+  "slug": "gazebo-simulation",
+  "version": "1.0",
+  "abstract": "This chapter explores Gazebo simulation environment for Physical AI applications, covering physics simulation, sensor modeling, and integration with ROS 2 for robot development.",
+  "learning_objectives": [
+    "Understand the architecture and core concepts of Gazebo simulation",
+    "Create and configure robot models for simulation",
+    "Implement sensor simulation with realistic models",
+    "Develop custom plugins for simulation behaviors",
+    "Integrate Gazebo with ROS 2 for complete robot simulation",
+    "Apply domain randomization techniques for sim-to-real transfer",
+    "Optimize simulation performance for complex scenarios"
+  ],
+  "keywords": [
+    "Gazebo",
+    "Simulation",
+    "Physics Engine",
+    "Sensor Modeling",
+    "Robot Simulation",
+    "Sim-to-Real Transfer"
+  ],
+  "topics": [
+    "Robot Simulation",
+    "Physics Simulation",
+    "Sensor Simulation",
+    "Domain Randomization"
+  ],
+  "prerequisites": [
+    "Basic understanding of robotics",
+    "Experience with ROS/ROS2",
+    "Knowledge of 3D modeling concepts"
+  ],
+  "estimated_reading_time": 65,
+  "word_count": 4821,
+  "difficulty_level": "intermediate",
+  "target_audience": [
+    "Robotics researchers",
+    "Simulation engineers",
+    "AI practitioners"
+  ],
+  "related_chapters": [
+    "chapter-2",
+    "chapter-4",
+    "chapter-6"
+  ],
+  "standards_compliance": [
+    "Open Robotics standards",
+    "Simulation accuracy standards"
+  ],
+  "citation_style": "APA 7th Edition",
+  "review_status": "completed",
+  "last_reviewed": "2025-12-18",
+  "next_review_due": "2026-06-18",
+  "content_tags": [
+    {
+      "tag": "gazebo",
+      "confidence": 0.99,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "simulation",
+      "confidence": 0.97,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "physics-engine",
+      "confidence": 0.95,
+      "relevance": "technical_aspect"
+    },
+    {
+      "tag": "sensor-modeling",
+      "confidence": 0.93,
+      "relevance": "technical_aspect"
+    },
+    {
+      "tag": "sim-to-real",
+      "confidence": 0.91,
+      "relevance": "challenge"
+    }
+  ],
+  "ai_processing_metadata": {
+    "summary_length": 200,
+    "key_concepts_count": 22,
+    "technical_terms_count": 38,
+    "concept_graph_density": 0.75
+  },
+  "accessibility_features": [
+    "structured headings",
+    "diagrams and illustrations",
+    "clear language",
+    "consistent navigation"
+  ],
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International"
+}

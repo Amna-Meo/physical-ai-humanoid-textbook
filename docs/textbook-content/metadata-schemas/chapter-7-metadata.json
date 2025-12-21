@@ -1,0 +1,95 @@
+{
+  "chapter_id": "chapter-7",
+  "title": "Control Systems for Physical AI",
+  "slug": "control-systems",
+  "version": "1.0",
+  "abstract": "This chapter covers fundamental and advanced control techniques for Physical AI systems, including classical control, adaptive control, and optimal control strategies.",
+  "learning_objectives": [
+    "Understand fundamental control theory concepts applied to Physical AI systems",
+    "Design and implement feedback control systems for robotic applications",
+    "Apply advanced control techniques such as adaptive and robust control",
+    "Implement optimal control strategies for complex robotic tasks",
+    "Design control systems that handle uncertainty and disturbances",
+    "Integrate control systems with perception and planning modules"
+  ],
+  "keywords": [
+    "Control Systems",
+    "Feedback Control",
+    "Adaptive Control",
+    "Optimal Control",
+    "Robust Control",
+    "Robot Control"
+  ],
+  "topics": [
+    "Classical Control Theory",
+    "Advanced Control Techniques",
+    "Optimal Control",
+    "Robust Control"
+  ],
+  "prerequisites": [
+    "Calculus and differential equations",
+    "Linear algebra",
+    "Basic understanding of dynamical systems"
+  ],
+  "estimated_reading_time": 85,
+  "word_count": 6543,
+  "difficulty_level": "advanced",
+  "target_audience": [
+    "Control engineers",
+    "Robotics researchers",
+    "Systems engineers"
+  ],
+  "related_chapters": [
+    "chapter-1",
+    "chapter-6",
+    "chapter-9"
+  ],
+  "standards_compliance": [
+    "Control systems engineering standards",
+    "Safety-critical system standards"
+  ],
+  "citation_style": "APA 7th Edition",
+  "review_status": "completed",
+  "last_reviewed": "2025-12-18",
+  "next_review_due": "2026-06-18",
+  "content_tags": [
+    {
+      "tag": "control-systems",
+      "confidence": 0.99,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "feedback-control",
+      "confidence": 0.97,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "adaptive-control",
+      "confidence": 0.95,
+      "relevance": "technical_aspect"
+    },
+    {
+      "tag": "optimal-control",
+      "confidence": 0.93,
+      "relevance": "technical_aspect"
+    },
+    {
+      "tag": "robust-control",
+      "confidence": 0.91,
+      "relevance": "technical_aspect"
+    }
+  ],
+  "ai_processing_metadata": {
+    "summary_length": 280,
+    "key_concepts_count": 35,
+    "technical_terms_count": 65,
+    "concept_graph_density": 0.87
+  },
+  "accessibility_features": [
+    "structured headings",
+    "mathematical equations with explanations",
+    "clear language",
+    "consistent navigation"
+  ],
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International"
+}

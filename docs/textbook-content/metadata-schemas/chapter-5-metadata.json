@@ -1,0 +1,97 @@
+{
+  "chapter_id": "chapter-5",
+  "title": "Vision-Language-Action Systems for Physical AI",
+  "slug": "vision-language-action-systems",
+  "version": "1.0",
+  "abstract": "This chapter explores Vision-Language-Action (VLA) systems that integrate perception, language understanding, and physical action for intelligent robot behavior.",
+  "learning_objectives": [
+    "Understand the principles of Vision-Language-Action integration",
+    "Explain how multimodal perception works in robotics",
+    "Describe the role of vision-language models in robotic systems",
+    "Design action planning systems that incorporate language understanding",
+    "Implement grounded language understanding for robot control",
+    "Evaluate VLA systems using appropriate benchmarks",
+    "Consider safety and ethical implications of VLA systems",
+    "Apply VLA concepts to humanoid robotics scenarios"
+  ],
+  "keywords": [
+    "Vision-Language-Action",
+    "Multimodal AI",
+    "Grounded Language",
+    "Robot Perception",
+    "Action Planning",
+    "Multimodal Learning"
+  ],
+  "topics": [
+    "Multimodal AI",
+    "Vision-Language Models",
+    "Action Planning",
+    "Grounded Language Understanding"
+  ],
+  "prerequisites": [
+    "Knowledge of computer vision",
+    "Understanding of natural language processing",
+    "Robotics fundamentals"
+  ],
+  "estimated_reading_time": 75,
+  "word_count": 5689,
+  "difficulty_level": "advanced",
+  "target_audience": [
+    "AI researchers",
+    "Robotics engineers",
+    "Computer vision specialists"
+  ],
+  "related_chapters": [
+    "chapter-1",
+    "chapter-8",
+    "chapter-9"
+  ],
+  "standards_compliance": [
+    "AI safety standards",
+    "Ethical AI guidelines"
+  ],
+  "citation_style": "APA 7th Edition",
+  "review_status": "completed",
+  "last_reviewed": "2025-12-18",
+  "next_review_due": "2026-06-18",
+  "content_tags": [
+    {
+      "tag": "vision-language-action",
+      "confidence": 0.99,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "multimodal-ai",
+      "confidence": 0.97,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "grounded-language",
+      "confidence": 0.95,
+      "relevance": "application"
+    },
+    {
+      "tag": "robot-perception",
+      "confidence": 0.93,
+      "relevance": "technical_aspect"
+    },
+    {
+      "tag": "action-planning",
+      "confidence": 0.91,
+      "relevance": "application"
+    }
+  ],
+  "ai_processing_metadata": {
+    "summary_length": 240,
+    "key_concepts_count": 28,
+    "technical_terms_count": 52,
+    "concept_graph_density": 0.81
+  },
+  "accessibility_features": [
+    "structured headings",
+    "multimodal examples",
+    "clear language",
+    "consistent navigation"
+  ],
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International"
+}

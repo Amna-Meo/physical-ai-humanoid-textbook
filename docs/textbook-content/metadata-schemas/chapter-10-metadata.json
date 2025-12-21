@@ -1,0 +1,97 @@
+{
+  "chapter_id": "chapter-10",
+  "title": "Integration and Deployment of Physical AI Systems",
+  "slug": "integration-and-deployment",
+  "version": "1.0",
+  "abstract": "This chapter covers the integration and deployment of Physical AI systems, including system architecture, real-time considerations, safety engineering, and ethical implications.",
+  "learning_objectives": [
+    "Understand the challenges of integrating Physical AI components into cohesive systems",
+    "Design system architectures that support real-time performance and safety",
+    "Implement deployment strategies for Physical AI applications",
+    "Apply verification and validation techniques to ensure system reliability",
+    "Design human-robot interaction interfaces and protocols",
+    "Handle system maintenance, updates, and lifecycle management",
+    "Address ethical, legal, and social implications of deployed Physical AI systems"
+  ],
+  "keywords": [
+    "System Integration",
+    "Deployment",
+    "Real-time Systems",
+    "Safety Engineering",
+    "Human-Robot Interaction",
+    "System Architecture"
+  ],
+  "topics": [
+    "System Integration",
+    "Deployment Strategies",
+    "Safety Engineering",
+    "Human-Robot Interaction"
+  ],
+  "prerequisites": [
+    "Understanding of robotics systems",
+    "Software engineering principles",
+    "Basic knowledge of safety standards"
+  ],
+  "estimated_reading_time": 100,
+  "word_count": 7856,
+  "difficulty_level": "intermediate",
+  "target_audience": [
+    "Systems engineers",
+    "Robotics practitioners",
+    "AI deployment specialists"
+  ],
+  "related_chapters": [
+    "chapter-1",
+    "chapter-2",
+    "chapter-9"
+  ],
+  "standards_compliance": [
+    "ISO 13482 Safety requirements",
+    "ISO 10218 Industrial robot safety",
+    "IEC 61508 Functional safety"
+  ],
+  "citation_style": "APA 7th Edition",
+  "review_status": "completed",
+  "last_reviewed": "2025-12-18",
+  "next_review_due": "2026-06-18",
+  "content_tags": [
+    {
+      "tag": "system-integration",
+      "confidence": 0.99,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "deployment",
+      "confidence": 0.97,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "real-time-systems",
+      "confidence": 0.95,
+      "relevance": "technical_aspect"
+    },
+    {
+      "tag": "safety-engineering",
+      "confidence": 0.93,
+      "relevance": "critical_aspect"
+    },
+    {
+      "tag": "human-robot-interaction",
+      "confidence": 0.91,
+      "relevance": "application"
+    }
+  ],
+  "ai_processing_metadata": {
+    "summary_length": 340,
+    "key_concepts_count": 45,
+    "technical_terms_count": 85,
+    "concept_graph_density": 0.93
+  },
+  "accessibility_features": [
+    "structured headings",
+    "case studies",
+    "clear language",
+    "consistent navigation"
+  ],
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International"
+}

@@ -1,0 +1,96 @@
+{
+  "chapter_id": "chapter-8",
+  "title": "Perception Systems for Physical AI",
+  "slug": "perception-systems",
+  "version": "1.0",
+  "abstract": "This chapter covers perception systems for Physical AI, including sensor fusion, computer vision, state estimation, and SLAM for environmental understanding.",
+  "learning_objectives": [
+    "Understand the fundamental principles of robot perception in physical environments",
+    "Implement sensor fusion techniques for robust state estimation",
+    "Apply computer vision algorithms for object detection and recognition",
+    "Design localization and mapping systems for navigation",
+    "Integrate multi-modal perception for comprehensive environmental understanding",
+    "Handle uncertainty and noise in sensor data",
+    "Optimize perception algorithms for real-time performance"
+  ],
+  "keywords": [
+    "Robot Perception",
+    "Sensor Fusion",
+    "Computer Vision",
+    "SLAM",
+    "State Estimation",
+    "Multi-modal Perception"
+  ],
+  "topics": [
+    "Computer Vision",
+    "Sensor Fusion",
+    "SLAM",
+    "State Estimation"
+  ],
+  "prerequisites": [
+    "Basic understanding of probability and statistics",
+    "Linear algebra",
+    "Programming skills"
+  ],
+  "estimated_reading_time": 90,
+  "word_count": 6987,
+  "difficulty_level": "advanced",
+  "target_audience": [
+    "Computer vision engineers",
+    "Robotics researchers",
+    "Perception specialists"
+  ],
+  "related_chapters": [
+    "chapter-1",
+    "chapter-7",
+    "chapter-9"
+  ],
+  "standards_compliance": [
+    "Computer vision standards",
+    "Sensor integration standards"
+  ],
+  "citation_style": "APA 7th Edition",
+  "review_status": "completed",
+  "last_reviewed": "2025-12-18",
+  "next_review_due": "2026-06-18",
+  "content_tags": [
+    {
+      "tag": "robot-perception",
+      "confidence": 0.99,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "sensor-fusion",
+      "confidence": 0.97,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "computer-vision",
+      "confidence": 0.96,
+      "relevance": "technical_aspect"
+    },
+    {
+      "tag": "slam",
+      "confidence": 0.94,
+      "relevance": "application"
+    },
+    {
+      "tag": "state-estimation",
+      "confidence": 0.92,
+      "relevance": "technical_aspect"
+    }
+  ],
+  "ai_processing_metadata": {
+    "summary_length": 300,
+    "key_concepts_count": 38,
+    "technical_terms_count": 72,
+    "concept_graph_density": 0.89
+  },
+  "accessibility_features": [
+    "structured headings",
+    "visual examples",
+    "clear language",
+    "consistent navigation"
+  ],
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International"
+}

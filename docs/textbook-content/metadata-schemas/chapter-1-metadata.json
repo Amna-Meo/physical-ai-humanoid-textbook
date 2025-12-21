@@ -1,0 +1,100 @@
+{
+  "chapter_id": "chapter-1",
+  "title": "Introduction to Physical AI",
+  "slug": "introduction-to-physical-ai",
+  "version": "1.0",
+  "authors": [
+    {
+      "name": "Physical AI Textbook Team",
+      "affiliation": "Robotics and AI Research Group"
+    }
+  ],
+  "abstract": "This chapter introduces the fundamental concepts of Physical AI, distinguishing it from traditional AI approaches and exploring its core principles, applications, and challenges.",
+  "learning_objectives": [
+    "Define Physical AI and distinguish it from traditional AI approaches",
+    "Explain the core principles of Physical AI including embodiment, real-time processing, uncertainty management, and energy efficiency",
+    "Identify key applications of Physical AI in humanoid robotics",
+    "Analyze the technical challenges facing Physical AI systems",
+    "Evaluate the historical context and future directions of Physical AI"
+  ],
+  "keywords": [
+    "Physical AI",
+    "Embodiment",
+    "Real-time Processing",
+    "Uncertainty Management",
+    "Humanoid Robotics",
+    "AI-Physical Interaction"
+  ],
+  "topics": [
+    "AI Fundamentals",
+    "Robotics",
+    "Cognitive Science",
+    "Machine Learning",
+    "Control Theory"
+  ],
+  "prerequisites": [
+    "Basic understanding of artificial intelligence concepts",
+    "Fundamental knowledge of robotics"
+  ],
+  "estimated_reading_time": 45,
+  "word_count": 2847,
+  "difficulty_level": "intermediate",
+  "target_audience": [
+    "Graduate students",
+    "Researchers",
+    "Practitioners in robotics and AI"
+  ],
+  "related_chapters": [
+    "chapter-2",
+    "chapter-3",
+    "chapter-6"
+  ],
+  "standards_compliance": [
+    "IEEE Robotics and Automation standards",
+    "ISO 13482 Safety requirements for personal care robots"
+  ],
+  "citation_style": "APA 7th Edition",
+  "review_status": "completed",
+  "last_reviewed": "2025-12-18",
+  "next_review_due": "2026-06-18",
+  "content_tags": [
+    {
+      "tag": "embodiment",
+      "confidence": 0.95,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "real-time-processing",
+      "confidence": 0.92,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "uncertainty-management",
+      "confidence": 0.89,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "humanoid-robotics",
+      "confidence": 0.87,
+      "relevance": "application"
+    },
+    {
+      "tag": "sim-to-real-gap",
+      "confidence": 0.91,
+      "relevance": "challenge"
+    }
+  ],
+  "ai_processing_metadata": {
+    "summary_length": 150,
+    "key_concepts_count": 12,
+    "technical_terms_count": 23,
+    "concept_graph_density": 0.65
+  },
+  "accessibility_features": [
+    "structured headings",
+    "alt text for figures",
+    "clear language",
+    "consistent navigation"
+  ],
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International"
+}

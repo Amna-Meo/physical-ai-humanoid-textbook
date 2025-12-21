@@ -1,0 +1,95 @@
+{
+  "chapter_id": "chapter-6",
+  "title": "Humanoid Locomotion",
+  "slug": "humanoid-locomotion",
+  "version": "1.0",
+  "abstract": "This chapter covers the principles and control strategies for humanoid robot locomotion, including walking pattern generation, balance control, and advanced gait techniques.",
+  "learning_objectives": [
+    "Understand the biomechanics and control principles underlying humanoid locomotion",
+    "Implement basic walking gaits using various control strategies",
+    "Analyze stability and balance in dynamic walking scenarios",
+    "Design controllers for different terrains and walking patterns",
+    "Integrate sensory feedback for robust locomotion",
+    "Evaluate the performance of locomotion algorithms"
+  ],
+  "keywords": [
+    "Humanoid Locomotion",
+    "Bipedal Walking",
+    "Balance Control",
+    "ZMP Control",
+    "Capture Point",
+    "Walking Patterns"
+  ],
+  "topics": [
+    "Humanoid Robotics",
+    "Locomotion Control",
+    "Balance and Stability",
+    "Walking Pattern Generation"
+  ],
+  "prerequisites": [
+    "Robotics fundamentals",
+    "Control systems knowledge",
+    "Basic understanding of dynamics"
+  ],
+  "estimated_reading_time": 80,
+  "word_count": 6124,
+  "difficulty_level": "advanced",
+  "target_audience": [
+    "Humanoid robotics researchers",
+    "Control engineers",
+    "Biomechanics specialists"
+  ],
+  "related_chapters": [
+    "chapter-1",
+    "chapter-7",
+    "chapter-8"
+  ],
+  "standards_compliance": [
+    "Robot safety standards",
+    "Biomechanics research standards"
+  ],
+  "citation_style": "APA 7th Edition",
+  "review_status": "completed",
+  "last_reviewed": "2025-12-18",
+  "next_review_due": "2026-06-18",
+  "content_tags": [
+    {
+      "tag": "humanoid-locomotion",
+      "confidence": 0.99,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "bipedal-walking",
+      "confidence": 0.97,
+      "relevance": "core_concept"
+    },
+    {
+      "tag": "balance-control",
+      "confidence": 0.96,
+      "relevance": "technical_aspect"
+    },
+    {
+      "tag": "zmp-control",
+      "confidence": 0.94,
+      "relevance": "technical_aspect"
+    },
+    {
+      "tag": "walking-patterns",
+      "confidence": 0.92,
+      "relevance": "application"
+    }
+  ],
+  "ai_processing_metadata": {
+    "summary_length": 260,
+    "key_concepts_count": 31,
+    "technical_terms_count": 58,
+    "concept_graph_density": 0.84
+  },
+  "accessibility_features": [
+    "structured headings",
+    "diagrams of walking phases",
+    "clear language",
+    "consistent navigation"
+  ],
+  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International"
+}
