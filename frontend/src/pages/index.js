@@ -1,3 +1,4 @@
+import ChatWidget from '../components/ChatWidget';
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
@@ -32,9 +33,11 @@ export default function Home() {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
+	<ChatWidget />
       <main>
         <HomepageFeatures />
       </main>
     </Layout>
   );
 }
+

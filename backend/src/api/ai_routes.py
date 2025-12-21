@@ -10,6 +10,7 @@ from ..models.ai_interaction import (
 )
 from ..models.chapter import ChapterResponse
 from ..services.ai_service import AIService, get_ai_service
+from ..services.error_handling_service import ErrorHandlingService, get_error_handling_service, ErrorCategory
 from ..lib.database import get_db
 
 # OAuth2 scheme for token authentication
@@ -32,20 +33,36 @@ async def create_chat_session(
     """
     Create a new AI chat session
     """
-    # Verify token (basic check - in a real app, use the user service)
-    if not token:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not authenticated",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+    try:
+        # Verify token (basic check - in a real app, use the user service)
+        if not token:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Not authenticated",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
 
-    ai_service = get_ai_service(db)
-    session = ai_service.create_chat_session(
-        user_id=None,  # Would extract from token in a real implementation
-        session_title=session_data.session_title
-    )
-    return session
+        ai_service = get_ai_service(db)
+        session = ai_service.create_chat_session(
+            user_id=None,  # Would extract from token in a real implementation
+            session_title=session_data.session_title
+        )
+        return session
+    except HTTPException:
+        # Re-raise HTTP exceptions as they are properly handled
+        raise
+    except Exception as e:
+        # Use error handling service for other exceptions
+        error_service = get_error_handling_service(db)
+        error_response = error_service.handle_api_error(
+            e,
+            context={"endpoint": "/ai/chat-sessions", "action": "create_session"},
+            severity=error_service.ErrorSeverity.MEDIUM
+        )
+        raise HTTPException(
+            status_code=500,
+            detail=error_response["message"]
+        )
 
 
 @router.get("/chat-sessions/{session_id}", response_model=AIChatSessionResponse)
@@ -57,23 +74,39 @@ async def get_chat_session(
     """
     Get an AI chat session
     """
-    # Verify token
-    if not token:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not authenticated",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+    try:
+        # Verify token
+        if not token:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Not authenticated",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
 
-    ai_service = get_ai_service(db)
-    session = ai_service.get_chat_session(session_id)
-    if not session:
-        raise HTTPException(
-            status_code=404,
-            detail="Chat session not found"
-        )
+        ai_service = get_ai_service(db)
+        session = ai_service.get_chat_session(session_id)
+        if not session:
+            raise HTTPException(
+                status_code=404,
+                detail="Chat session not found"
+            )
 
-    return session
+        return session
+    except HTTPException:
+        # Re-raise HTTP exceptions as they are properly handled
+        raise
+    except Exception as e:
+        # Use error handling service for other exceptions
+        error_service = get_error_handling_service(db)
+        error_response = error_service.handle_api_error(
+            e,
+            context={"endpoint": f"/ai/chat-sessions/{session_id}", "action": "get_session", "session_id": session_id},
+            severity=error_service.ErrorSeverity.MEDIUM
+        )
+        raise HTTPException(
+            status_code=500,
+            detail=error_response["message"]
+        )
 
 
 @router.post("/chat-sessions/{session_id}/messages", response_model=AIChatMessageResponse)
@@ -86,40 +119,60 @@ async def send_message(
     """
     Send a message to the AI and get a response
     """
-    # Verify token
-    if not token:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not authenticated",
-            headers={"WWW-Authenticate": "Bearer"},
+    try:
+        # Verify token
+        if not token:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Not authenticated",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+
+        ai_service = get_ai_service(db)
+
+        # Add user message to session
+        user_message = ai_service.add_message_to_session(
+            session_id=session_id,
+            user_id=None,  # Would extract from token in a real implementation
+            role=message_data.role,
+            content=message_data.content
         )
 
-    ai_service = get_ai_service(db)
+        # Generate AI response based on the user message and any context
+        ai_response = ai_service.generate_ai_response(
+            query=message_data.content,
+            session_id=session_id,
+            context_chapters=message_data.context_chapters
+        )
 
-    # Add user message to session
-    user_message = ai_service.add_message_to_session(
-        session_id=session_id,
-        user_id=None,  # Would extract from token in a real implementation
-        role=message_data.role,
-        content=message_data.content
-    )
+        # Add AI response to session
+        ai_message = ai_service.add_message_to_session(
+            session_id=session_id,
+            user_id=None,
+            role="assistant",
+            content=ai_response
+        )
 
-    # Generate AI response based on the user message and any context
-    ai_response = ai_service.generate_ai_response(
-        query=message_data.content,
-        session_id=session_id,
-        context_chapters=message_data.context_chapters
-    )
-
-    # Add AI response to session
-    ai_message = ai_service.add_message_to_session(
-        session_id=session_id,
-        user_id=None,
-        role="assistant",
-        content=ai_response
-    )
-
-    return ai_message
+        return ai_message
+    except HTTPException:
+        # Re-raise HTTP exceptions as they are properly handled
+        raise
+    except Exception as e:
+        # Use error handling service for other exceptions
+        error_service = get_error_handling_service(db)
+        error_response = error_service.handle_api_error(
+            e,
+            context={
+                "endpoint": f"/ai/chat-sessions/{session_id}/messages",
+                "action": "send_message",
+                "session_id": session_id
+            },
+            severity=error_service.ErrorSeverity.HIGH
+        )
+        raise HTTPException(
+            status_code=500,
+            detail=error_response["message"]
+        )
 
 
 @router.get("/chat-sessions/{session_id}/messages", response_model=List[AIChatMessageResponse])
@@ -133,19 +186,41 @@ async def get_session_messages(
     """
     Get messages from a chat session
     """
-    # Verify token
-    if not token:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not authenticated",
-            headers={"WWW-Authenticate": "Bearer"},
+    try:
+        # Verify token
+        if not token:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Not authenticated",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+
+        ai_service = get_ai_service(db)
+        messages = ai_service.get_session_history(session_id, limit=limit)
+
+        # Reverse to return in chronological order (oldest first)
+        return list(reversed(messages))
+    except HTTPException:
+        # Re-raise HTTP exceptions as they are properly handled
+        raise
+    except Exception as e:
+        # Use error handling service for other exceptions
+        error_service = get_error_handling_service(db)
+        error_response = error_service.handle_api_error(
+            e,
+            context={
+                "endpoint": f"/ai/chat-sessions/{session_id}/messages",
+                "action": "get_session_messages",
+                "session_id": session_id,
+                "skip": skip,
+                "limit": limit
+            },
+            severity=error_service.ErrorSeverity.MEDIUM
         )
-
-    ai_service = get_ai_service(db)
-    messages = ai_service.get_session_history(session_id, limit=limit)
-
-    # Reverse to return in chronological order (oldest first)
-    return list(reversed(messages))
+        raise HTTPException(
+            status_code=500,
+            detail=error_response["message"]
+        )
 
 
 @router.get("/search", response_model=List[dict])

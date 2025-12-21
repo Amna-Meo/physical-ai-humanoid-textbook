@@ -6,13 +6,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 (module.exports = {
   title: 'My Site',
   tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://amna-meo.github.io',
+  baseUrl: '/physical-ai-humanoid-textbook/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'Amna-Meo', // Usually your GitHub org/user name.
+  projectName: 'physical-ai-humanoid-textbook', // Usually your repo name.
+  trailingSlash: false,
 
   presets: [
     [
