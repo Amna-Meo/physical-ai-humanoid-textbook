@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "name": "physical-ai-textbook-backend",
+  "builds": [
+    {
+      "src": "src/api/main.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.11"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/src/api/main.py"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "$DATABASE_URL",
+    "GEMINI_API_KEY": "$GEMINI_API_KEY",
+    "QDRANT_URL": "$QDRANT_URL",
+    "QDRANT_API_KEY": "$QDRANT_API_KEY"
+  }
+}

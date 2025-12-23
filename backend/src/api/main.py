@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="Physical AI & Humanoid Robotics Textbook API",
-    description="Backend API for the Physical AI & Humanoid Robotics Textbook platform",
+    description="Backend API for the Physical AI & Humanoid Robotics Textbook platform with Gemini AI integration",
     version="0.1.0"
 )
 

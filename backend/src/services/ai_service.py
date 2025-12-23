@@ -33,7 +33,15 @@ try:
     gemini_api_key = os.getenv("GEMINI_API_KEY")
     if gemini_api_key:
         genai.configure(api_key=gemini_api_key)
-        gemini_model = genai.GenerativeModel('gemini-pro')
+        gemini_model = genai.GenerativeModel(
+            model_name='gemini-pro',
+            generation_config={
+                "temperature": 0.7,
+                "max_output_tokens": 1000,
+                "top_p": 0.9,
+                "top_k": 40
+            }
+        )
         GEMINI_AVAILABLE = True
     else:
         logger.info("GEMINI API key not set.")
@@ -45,11 +53,12 @@ except ImportError:
     GEMINI_AVAILABLE = False
 
 # Determine primary AI provider based on availability
+# Prioritize Gemini over OpenAI since it's free
 AI_PROVIDER = None
-if OPENAI_AVAILABLE:
-    AI_PROVIDER = "openai"
-elif GEMINI_AVAILABLE:
+if GEMINI_AVAILABLE:
     AI_PROVIDER = "gemini"
+elif OPENAI_AVAILABLE:
+    AI_PROVIDER = "openai"
 else:
     AI_PROVIDER = "mock"
 
@@ -121,7 +130,14 @@ class AIService:
                 # For now, we'll use a mock approach for Gemini as it doesn't provide embedding API directly
                 # In a real implementation, we might use Google's dedicated embedding models
                 # or other approaches
-                query_vector = [hash(c) % 1000 / 1000.0 for c in query[:1536]]  # Simple mock
+                # Using sentence-transformers as an alternative for embeddings
+                try:
+                    from sentence_transformers import SentenceTransformer
+                    model = SentenceTransformer('all-MiniLM-L6-v2')
+                    query_vector = model.encode([query])[0].tolist()
+                except ImportError:
+                    logger.info("Sentence transformers not available, using mock embedding")
+                    query_vector = [hash(c) % 1000 / 1000.0 for c in query[:1536]]  # Simple mock
             else:
                 # Mock embedding for demonstration
                 # In a real implementation without OpenAI, we might use:
@@ -168,7 +184,14 @@ class AIService:
             elif GEMINI_AVAILABLE:
                 # For now, we'll use a mock approach for Gemini as it doesn't provide embedding API directly
                 # In a real implementation, we might use Google's dedicated embedding models
-                embedding = [hash(c) % 1000 / 1000.0 for c in content[:1536]]  # Simple mock
+                # Using sentence-transformers as an alternative for embeddings
+                try:
+                    from sentence_transformers import SentenceTransformer
+                    model = SentenceTransformer('all-MiniLM-L6-v2')
+                    embedding = model.encode([content])[0].tolist()
+                except ImportError:
+                    logger.info("Sentence transformers not available, using mock embedding")
+                    embedding = [hash(c) % 1000 / 1000.0 for c in content[:1536]]  # Simple mock
             else:
                 # Mock embedding for demonstration
                 embedding = [hash(c) % 1000 / 1000.0 for c in content[:1536]]  # Simple mock
