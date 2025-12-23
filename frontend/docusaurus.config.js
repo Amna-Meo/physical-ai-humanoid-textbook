@@ -4,16 +4,18 @@ module.exports = {
     tagline: "AI-Native Textbook for Panaversity Hackathon",
     url: "https://Amna-Meo.github.io", // Replace with your GitHub username
     baseUrl: "/physical-ai-humanoid-textbook/", // Your repository name
-    onBrokenLinks: "throw",
-    markdown:{
-	hooks: {
-	onBrokenMarkdownLinks: 'warn',
-	},
-	},
+    onBrokenLinks: "warn",
     favicon: "img/favicon.ico",
     organizationName: "Amna-Meo", // Your GitHub username
     projectName: "physical-ai-humanoid-textbook", // Repository name
     trailingSlash: false,
+    customFields: {
+        markdown: {
+            hooks: {
+                onBrokenMarkdownLinks: 'warn',
+            },
+        },
+    },
     presets: [
         [
             "@docusaurus/preset-classic",
@@ -23,7 +25,7 @@ module.exports = {
                     routeBasePath: "/", // <-- NEW: folder containing Markdown files
                     sidebarPath: require.resolve("./sidebars.js"),
                     editUrl:
-                        "https://github.com/Amna-Meo/physical-ai-humanoid-textbook/edit/main/docs_files/",
+                        "https://github.com/Amna-Meo/physical-ai-humanoid-textbook/edit/main/frontend/docs/",
                 },
                 blog: false, // We don't need a blog for the textbook
                 theme: {
@@ -41,8 +43,8 @@ module.exports = {
             },
             items: [
                 {
-                    type: "docSidebar",
-                    sidebarId: "tutorialSidebar",
+                    type: "doc",
+                    docId: "textbook-content/intro",
                     position: "left",
                     label: "Chapters",
                 },

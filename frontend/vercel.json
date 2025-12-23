@@ -16,9 +16,6 @@
     { "src": "/^(.*)\\.((?!js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|txt|json|xml|pdf|csv|map)$)", "dest": "/index.html" }
   ],
   "env": {
-    "DATABASE_URL": "$DATABASE_URL",
-    "GEMINI_API_KEY": "$GEMINI_API_KEY",
-    "QDRANT_URL": "$QDRANT_URL",
-    "QDRANT_API_KEY": "$QDRANT_API_KEY"
+    "NODE_ENV": "production"
   }
 }
