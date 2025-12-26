@@ -1,6 +1,6 @@
 // API Service for Physical AI & Humanoid Robotics Textbook
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000/api/v1';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://39.34.129.27:8000/api/v1';
 
 // Default headers
 const defaultHeaders = {

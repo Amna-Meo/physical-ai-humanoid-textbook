@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, ForeignKey, JSON
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
-from backend.src.lib.database import Base
+from ..lib.database import Base
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime

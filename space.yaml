@@ -1,0 +1,14 @@
+# Hugging Face Space Configuration
+type: docker
+dockerfile: Dockerfile.hf
+models: []
+datasets: []
+tags:
+  - text-generation
+  - educational
+  - ai
+  - robotics
+  - physical-ai
+  - humanoid-robotics
+  - textbook
+  - fastapi

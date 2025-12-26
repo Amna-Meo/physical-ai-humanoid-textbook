@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, Text
 from sqlalchemy.sql import func
-from backend.src.lib.database import Base
+from ..lib.database import Base
 from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime

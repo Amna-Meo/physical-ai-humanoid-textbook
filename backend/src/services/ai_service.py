@@ -8,6 +8,7 @@ from ..models.ai_interaction import AIChatSession, AIChatMessage, AIInteractionL
 from ..models.chapter import Chapter
 from ..lib.vector_store import vector_store, CHAPTER_CONTENT_COLLECTION
 from ..lib.database import get_db
+from .hf_service import hf_service, get_hf_service
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -52,13 +53,23 @@ except ImportError:
     gemini_model = None
     GEMINI_AVAILABLE = False
 
+# Check for Hugging Face availability
+try:
+    import torch
+    HF_AVAILABLE = True
+except ImportError:
+    logger.info("PyTorch not available, Hugging Face models won't work.")
+    HF_AVAILABLE = False
+
 # Determine primary AI provider based on availability
-# Prioritize Gemini over OpenAI since it's free
+# Prioritize in order: OpenAI, Gemini, Hugging Face, then mock
 AI_PROVIDER = None
-if GEMINI_AVAILABLE:
-    AI_PROVIDER = "gemini"
-elif OPENAI_AVAILABLE:
+if OPENAI_AVAILABLE:
     AI_PROVIDER = "openai"
+elif GEMINI_AVAILABLE:
+    AI_PROVIDER = "gemini"
+elif HF_AVAILABLE:
+    AI_PROVIDER = "huggingface"
 else:
     AI_PROVIDER = "mock"
 
@@ -238,13 +249,6 @@ class AIService:
             # Get relevant content for context using vector search
             relevant_content = self.get_relevant_content(query, context_chapters)
 
-            # Prepare the system message with context
-            system_message = """You are an AI assistant for the Physical AI & Humanoid Robotics textbook.
-            Your role is to help students understand concepts from the textbook.
-            Base your responses on the textbook content provided in the context.
-            Be accurate, helpful, and cite specific information when possible.
-            If you don't have specific information from the textbook, acknowledge this limitation."""
-
             # Build context from retrieved content
             context_text = ""
             sources = []
@@ -259,14 +263,19 @@ class AIService:
             else:
                 context_text = "No specific textbook content found for this query. Use general knowledge about Physical AI and Humanoid Robotics."
 
-            # Prepare the full user message with context
-            user_context = f"{context_text}\n\nUser query: {query}"
-
             ai_response = ""
             model_used = "mock-model"
 
             if AI_PROVIDER == "openai" and OPENAI_AVAILABLE:
                 # Use OpenAI API for real responses with proper context
+                system_message = """You are an AI assistant for the Physical AI & Humanoid Robotics textbook.
+                Your role is to help students understand concepts from the textbook.
+                Base your responses on the textbook content provided in the context.
+                Be accurate, helpful, and cite specific information when possible.
+                If you don't have specific information from the textbook, acknowledge this limitation."""
+
+                user_context = f"{context_text}\n\nUser query: {query}"
+
                 response = openai_client.chat.completions.create(
                     model=os.getenv("OPENAI_MODEL", "gpt-3.5-turbo"),
                     messages=[
@@ -280,7 +289,13 @@ class AIService:
                 model_used = os.getenv("OPENAI_MODEL", "gpt-3.5-turbo")
             elif AI_PROVIDER == "gemini" and GEMINI_AVAILABLE:
                 # Use Google Gemini API for responses
-                full_prompt = f"{system_message}\n\n{user_context}"
+                system_message = """You are an AI assistant for the Physical AI & Humanoid Robotics textbook.
+                Your role is to help students understand concepts from the textbook.
+                Base your responses on the textbook content provided in the context.
+                Be accurate, helpful, and cite specific information when possible.
+                If you don't have specific information from the textbook, acknowledge this limitation."""
+
+                full_prompt = f"{system_message}\n\n{context_text}\n\nUser query: {query}"
                 response = gemini_model.generate_content(
                     full_prompt,
                     generation_config={
@@ -290,6 +305,11 @@ class AIService:
                 )
                 ai_response = response.text if response.text else "I couldn't generate a response for your query."
                 model_used = "gemini-pro"
+            elif AI_PROVIDER == "huggingface" and HF_AVAILABLE:
+                # Use Hugging Face model for responses
+                hf_service = get_hf_service()
+                ai_response = hf_service.generate_with_context(query, context_text)
+                model_used = os.getenv("HF_MODEL_NAME", "huggingface-model")
             else:
                 # Enhanced mock response that considers retrieved content
                 ai_response = self._generate_mock_response_with_context(query, context_chapters, context_text)

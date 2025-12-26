@@ -5,15 +5,15 @@ from alembic import context
 import sys
 import os
 
-# Add the backend/src directory to the path so we can import our models
+# Add the src directory to the path so we can import our models
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from backend.src.lib.database import Base
-from backend.src.models.user import User
-from backend.src.models.chapter import Chapter, ChapterContentBlock
-from backend.src.models.learning_path import LearningPath, LearningPathStep, UserLearningPath, UserLearningPathProgress
-from backend.src.models.ai_interaction import AIChatSession, AIChatMessage, AIInteractionLog, AIPreference
-from backend.src.models.citation import Citation, ChapterCitation, CitationVerification
+from src.lib.database import Base
+from src.models.user import User
+from src.models.chapter import Chapter, ChapterContentBlock
+from src.models.learning_path import LearningPath, LearningPathStep, UserLearningPath, UserLearningPathProgress
+from src.models.ai_interaction import AIChatSession, AIChatMessage, AIInteractionLog, AIPreference
+from src.models.citation import Citation, ChapterCitation, CitationVerification
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -21,8 +21,9 @@ config = context.config
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
-if config.config_file_name is not None:
-    fileConfig(config.config_file_name)
+# Commenting out logging config to avoid KeyError issues
+# if config.config_file_name is not None:
+#     fileConfig(config.config_file_name)
 
 # add your model's MetaData object here
 # for 'autogenerate' support
@@ -65,11 +66,10 @@ def run_migrations_online() -> None:
     and associate a connection with the context.
 
     """
-    connectable = engine_from_config(
-        config.get_section(config.config_ini_section),
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
-    )
+    # Set the database URL from environment variable if available
+    from sqlalchemy import create_engine
+    url = os.getenv("DATABASE_URL", config.get_main_option("sqlalchemy.url"))
+    connectable = create_engine(url, poolclass=pool.NullPool)
 
     with connectable.connect() as connection:
         context.configure(

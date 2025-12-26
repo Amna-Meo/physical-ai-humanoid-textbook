@@ -3,7 +3,7 @@ module.exports = {
     title: "Physical AI & Humanoid Robotics",
     tagline: "AI-Native Textbook for Panaversity Hackathon",
     url: "https://Amna-Meo.github.io", // Replace with your GitHub username
-    baseUrl: "/physical-ai-humanoid-textbook/", // Your repository name
+    baseUrl: "/", // Set to root for Vercel deployment
     onBrokenLinks: "warn",
     favicon: "img/favicon.ico",
     organizationName: "Amna-Meo", // Your GitHub username
@@ -63,7 +63,7 @@ module.exports = {
                     items: [
                         {
                             label: "Chapters",
-                            to: "/docs/intro",
+                            to: "/textbook-content/intro",
                         },
                     ],
                 },
