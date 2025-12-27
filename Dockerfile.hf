@@ -11,19 +11,21 @@ WORKDIR /app
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         build-essential \
+        git \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first to leverage Docker cache
-COPY requirements.txt .
+COPY requirements_hf.txt .
 RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements_hf.txt
 
 # Install additional dependencies for Hugging Face Spaces
 RUN pip install --no-cache-dir gradio
 
 # Copy the app files
 COPY app.py /app/app.py
-COPY backend/src/api/main.py /app/main.py
+COPY run_gradio.py /app/run_gradio.py
+COPY backend/ /app/backend/
 
 # Create non-root user
 RUN adduser --disabled-password --gecos '' appuser
@@ -33,5 +35,5 @@ USER appuser
 # Expose port (Hugging Face Spaces uses dynamic port assignment)
 EXPOSE 7860
 
-# Run the application
-CMD ["python", "app.py"]
+# Run the Gradio application
+CMD ["python", "run_gradio.py"]

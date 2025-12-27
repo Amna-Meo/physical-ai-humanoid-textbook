@@ -1,6 +1,6 @@
 """
-Hugging Face Spaces app for Physical AI & Humanoid Robotics Textbook
-This is a simplified version that works without external dependencies like PostgreSQL and Qdrant
+Hugging Face Space app for Physical AI & Humanoid Robotics Textbook
+This app provides a Gradio interface for the AI textbook backend
 """
 import os
 import sys
@@ -13,8 +13,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from dataclasses import dataclass, field
-from typing import Optional
 import hashlib
+import gradio as gr
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -103,7 +103,7 @@ mock_db = MockDB()
 class AIService:
     def __init__(self):
         self.model_used = "huggingface-model" if HF_AVAILABLE else "mock-model"
-
+        
     def create_chat_session(self, user_id: Optional[int] = None, session_title: Optional[str] = None) -> dict:
         session_data = {
             "user_id": user_id,
@@ -165,8 +165,8 @@ class AIService:
             4. Learning Efficiency: Acquiring new skills with minimal physical interaction"""
 
         elif 'ros' in query_lower or 'ros2' in query_lower:
-            return """ROS 2 (Robot Operating System 2) is a flexible framework for writing robot software.
-            It provides libraries and tools to help software developers create robot applications.
+            return """ROS 2 (Robot Operating System 2) is a flexible framework for writing robot software. 
+            It provides libraries and tools to help software developers create robot applications. 
             Key features include:
             - Distributed computing architecture
             - Support for multiple programming languages
@@ -192,10 +192,13 @@ class AIService:
         """Get the message history for a session"""
         return mock_db.get_session_messages(session_id)[-limit:]
 
+# Global AI service instance
+ai_service = AIService()
+
 # Create the FastAPI app
 app = FastAPI(
     title="Physical AI & Humanoid Robotics Textbook API",
-    description="Backend API for the Physical AI & Humanoid Robotics Textbook platform with AI integration",
+    description="Backend API for the Physical AI & Humanoid Robotics Textbook platform with Hugging Face AI integration",
     version="0.1.0"
 )
 
@@ -238,15 +241,12 @@ class AIChatMessageResponse(BaseModel):
     timestamp: str
     is_grounding_validated: bool = False
 
-# Global AI service instance
-ai_service = MockAIService()
-
 # Routes
 @app.get("/")
 async def root():
     return {
         "message": "Welcome to the Physical AI & Humanoid Robotics Textbook API",
-        "description": "This is a Hugging Face Spaces deployment of the textbook backend",
+        "description": "This is a Hugging Face Spaces deployment of the textbook backend with Hugging Face AI integration",
         "endpoints": [
             "/health",
             "/api/v1/ai/chat-sessions",
@@ -257,7 +257,7 @@ async def root():
 
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy", "platform": "huggingface-spaces"}
+    return {"status": "healthy", "platform": "huggingface-spaces", "hf_available": HF_AVAILABLE}
 
 @app.post("/api/v1/ai/chat-sessions", response_model=AIChatSessionResponse)
 async def create_chat_session(session_data: AIChatSessionCreate):
@@ -405,6 +405,105 @@ async def not_found_handler(request: Request, exc: HTTPException):
         }
     )
 
+# Gradio interface for Hugging Face Spaces
+def create_gradio_interface():
+    """Create a Gradio interface for the Hugging Face Space"""
+    
+    def predict(message, history, session_id):
+        """Process a message and return AI response"""
+        if not session_id:
+            # Create a new session
+            session_data = ai_service.create_chat_session(session_title="Gradio Session")
+            session_id = session_data["id"]
+        
+        # Format message for the API
+        message_data = AIChatMessageCreate(role="user", content=message)
+        
+        # Add user message to session
+        user_message = ai_service.add_message_to_session(
+            session_id=session_id,
+            user_id=None,
+            role="user",
+            content=message
+        )
+
+        # Generate AI response
+        ai_response_text = ai_service.generate_ai_response(
+            query=message,
+            session_id=session_id
+        )
+
+        # Add AI response to session
+        ai_message = ai_service.add_message_to_session(
+            session_id=session_id,
+            user_id=None,
+            role="assistant",
+            content=ai_response_text
+        )
+        
+        return ai_response_text, session_id
+    
+    with gr.Blocks() as demo:
+        gr.Markdown("# Physical AI & Humanoid Robotics Textbook Assistant")
+        gr.Markdown("Ask questions about Physical AI, Humanoid Robotics, and related topics!")
+        
+        session_id_state = gr.State(value=None)
+        
+        with gr.Row():
+            with gr.Column(scale=1):
+                new_session_btn = gr.Button("New Session")
+            with gr.Column(scale=4):
+                session_info = gr.Textbox(label="Session Info", interactive=False)
+        
+        chatbot = gr.Chatbot(height=400)
+        msg = gr.Textbox(label="Your Question", placeholder="Ask about Physical AI, humanoid robots, ROS, Gazebo, etc...")
+        submit_btn = gr.Button("Send")
+        
+        def start_new_session():
+            session_data = ai_service.create_chat_session(session_title="Gradio Session")
+            return session_data["id"], f"Started new session: {session_data['session_title']}"
+        
+        def reset_chat():
+            return [], None, "New session will be created on first message"
+        
+        new_session_btn.click(
+            start_new_session,
+            outputs=[session_id_state, session_info]
+        )
+        
+        submit_btn.click(
+            predict,
+            inputs=[msg, chatbot, session_id_state],
+            outputs=[chatbot, session_id_state]
+        )
+        
+        msg.submit(
+            predict,
+            inputs=[msg, chatbot, session_id_state],
+            outputs=[chatbot, session_id_state]
+        )
+        
+        gr.Button("Reset Chat").click(
+            reset_chat,
+            outputs=[chatbot, session_id_state, session_info]
+        )
+    
+    return demo
+
+# Create the Gradio interface
+gradio_interface = create_gradio_interface()
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 7860)))
+    import argparse
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--use-gradio", action="store_true", help="Use Gradio interface instead of FastAPI")
+    args = parser.parse_args()
+    
+    if args.use_gradio:
+        # Run Gradio interface
+        gradio_interface.launch(server_name="0.0.0.0", server_port=int(os.getenv("PORT", 7860)))
+    else:
+        # Run FastAPI
+        uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 7860)))
